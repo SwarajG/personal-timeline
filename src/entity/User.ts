@@ -24,4 +24,7 @@ export class User {
 
   @Column()
   picture: string | ''
+
+  @Column()
+  googleId: string | ''
 }

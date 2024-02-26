@@ -2,7 +2,6 @@
 import httpStatus from 'http-status';
 // const tokenService = require('./token.service');
 // const userService = require('./user.service');
-import userService from './user.service';
 // const Token = require('../models/token.model');
 import ApiError from '@utils/ApiError';
 import { AppDataSource } from "@database/data-source";
