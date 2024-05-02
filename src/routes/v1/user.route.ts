@@ -4,6 +4,10 @@ import express from 'express';
 // const authController = require('../../controllers/auth.controller');
 import { getUserProfile, logout } from '@controller/auth.controller';
 import { createUserPost } from '@controller/user.controller';
+import multer, { memoryStorage } from 'multer';
+
+const storage = memoryStorage();
+const upload = multer({ storage });
 // const auth = require('../../middlewares/auth');
 
 const router = express.Router();
@@ -12,7 +16,7 @@ router.get('/get_user_profile', getUserProfile);
 // router.get('/test', (request, res) => {
 //   res.redirect('http://localhost:3002');
 // })
-router.post('/user/:userID/createPost', createUserPost);
+router.post('/posts', upload.single('file'), createUserPost);
 // router.post('/register', authValidation.register, authController.register);
 // router.post('/login', authValidation.login, authController.login);
 router.get('/logout', logout);

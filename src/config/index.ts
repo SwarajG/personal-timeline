@@ -8,6 +8,12 @@ type config = {
     password: string;
     name: string;
   },
+  aws: {
+    S3_BUCKET_REGION: string;
+    AWS_SECRET_ACCESS_KEY: string;
+    AWS_ACCESS_KEY_ID: string;
+    S3_BUCKET: string;
+  },
   auth: {
     google: {
       GOOGLE_CLIENT_ID: string;
@@ -19,6 +25,12 @@ type config = {
 const config: config = {
   port: Number(process.env.PORT) || 3000,
   env: process.env.NODE_ENV || 'development',
+  aws: {
+    S3_BUCKET_REGION: process.env.S3_BUCKET_REGION,
+    AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+    AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+    S3_BUCKET: process.env.S3_BUCKET
+  },
   database: {
     host: process.env.DB_HOST || '',
     port: Number(process.env.DB_PORT),

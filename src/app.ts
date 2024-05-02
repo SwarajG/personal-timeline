@@ -17,7 +17,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.options('*', cors(corsOptions));
 app.use(cors(corsOptions));
-console.log('Hii');
 app.use(
 	session({
 		store: sessionRedisStore,
