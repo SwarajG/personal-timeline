@@ -3,7 +3,6 @@ import { User } from './User';
 
 @Entity()
 export class Post {
-
   @PrimaryGeneratedColumn()
   id: number
 
@@ -16,7 +15,4 @@ export class Post {
 
   @Column()
   media_url: string | ''
-
-  @Column()
-  created_at: string | ''
 }

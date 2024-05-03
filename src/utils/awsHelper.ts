@@ -12,7 +12,8 @@ const client = new S3Client({
 
 const s3Helpers = {
   uploadToS3: async ({ file, userID }: { file: any, userID: string }) => {
-    const key = `${userID}_${uuid()}`;
+    console.log('file: ', file);
+    const key = `${userID}_${uuid()}_${file.originalname}`;
     const bucket = config.aws.S3_BUCKET;
     const command = new PutObjectCommand({
       Bucket: bucket,
@@ -23,8 +24,10 @@ const s3Helpers = {
 
     try {
       await client.send(command);
+      return key;
     } catch (error) {
       console.log('Error: ', error);
+      return null;
     }
   }
 }

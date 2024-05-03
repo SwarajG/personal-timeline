@@ -1,15 +1,21 @@
 import httpStatus from 'http-status';
-// import { Request, Response } from 'express';
+import { getUserById } from '@services/user.service';
 import s3Helpers from '@utils/awsHelper';
 import catchAsync from '@utils/catchAsync';
+import { createPost } from '@services/post.service';
 
 const createUserPost = catchAsync(async (req: any, res) => {
-  // console.log('req: ', req.body.userID);
   const { text, userID } = req.body;
-  // console.log('File: ', req.file);
-  await s3Helpers.uploadToS3({ file: req.file, userID });
-  const post = {};
-  res.status(httpStatus.OK).send({ post });
+  const user = await getUserById(userID);
+  const response = await s3Helpers.uploadToS3({ file: req.file, userID });
+  const post = {
+    user,
+    content: text,
+    media_url: response
+  };
+  console.log('post: ', post);
+  const finalPost = await createPost(post);
+  res.status(httpStatus.OK).send({ post: finalPost });
 });
 
 export { createUserPost };
