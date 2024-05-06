@@ -22,12 +22,10 @@ router.get(
 	'/google/callback',
 	passport.authenticate('google', { failureRedirect: '/login' }),
 	function (req, res) {
-		// console.log(req.user);
 		// const user = req.session;
 		// req.session.id = req?.user?.id;
 		// req.session.user = req.user;
 		// Successful authentication, redirect home.
-		console.log('Returning to webapp');
 		res.redirect('http://localhost:3000');
 	},
 );

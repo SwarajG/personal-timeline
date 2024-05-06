@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, Index } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Index, OneToMany } from "typeorm"
+import { Post } from "./Post"
 
 @Entity()
 @Index(["email"], { unique: true })
@@ -27,4 +28,7 @@ export class User {
 
   @Column()
   googleId: string | ''
+
+  @OneToMany(() => Post, (post) => post.user)
+  posts: Post[]
 }

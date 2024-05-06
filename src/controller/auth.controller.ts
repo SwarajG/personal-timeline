@@ -28,7 +28,7 @@ const login = catchAsync(async (req: Request, res: Response) => {
 });
 
 const logout = catchAsync(async (req: Request, res: Response) => {
-  console.log('req: ', req.user);
+  // console.log('req: ', req.user);
   const userID = String(req.user);
   // const { email, password } = req.body;
   // const user = await authService.loginUserWithEmailAndPassword(email, password);

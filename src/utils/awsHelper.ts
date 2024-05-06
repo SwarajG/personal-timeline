@@ -1,4 +1,4 @@
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
 import { v4 as uuid } from 'uuid';
 import config from '@config/index';
 
@@ -11,8 +11,7 @@ const client = new S3Client({
 });
 
 const s3Helpers = {
-  uploadToS3: async ({ file, userID }: { file: any, userID: string }) => {
-    console.log('file: ', file);
+  uploadToS3: async ({ file, userID }: { file: any, userID: number }) => {
     const key = `${userID}_${uuid()}_${file.originalname}`;
     const bucket = config.aws.S3_BUCKET;
     const command = new PutObjectCommand({
@@ -28,6 +27,19 @@ const s3Helpers = {
     } catch (error) {
       console.log('Error: ', error);
       return null;
+    }
+  },
+  deleteFromS3: async (key: string) => {
+    const bucket = config.aws.S3_BUCKET;
+    const command = new DeleteObjectCommand({
+      Bucket: bucket,
+      Key: key,
+    });
+
+    try {
+      const response = await client.send(command);
+    } catch (err) {
+      console.error(err);
     }
   }
 }
