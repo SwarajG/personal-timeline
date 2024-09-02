@@ -3,10 +3,10 @@ import express from 'express';
 // const authValidation = require('../../validations/auth.validation');
 // const authController = require('../../controllers/auth.controller');
 import { getUserProfile, logout } from '@controller/auth.controller';
-import multer, { memoryStorage } from 'multer';
+// import multer, { memoryStorage } from 'multer';
 
-const storage = memoryStorage();
-const upload = multer({ storage });
+// const storage = memoryStorage();
+// const upload = multer({ storage });
 // const auth = require('../../middlewares/auth');
 
 const router = express.Router();

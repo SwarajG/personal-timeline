@@ -9,10 +9,14 @@ export class Post {
   @ManyToOne(() => User, (user) => user.posts)
   user: User
 
-  @Column()
+  @Column({
+    nullable: true
+  })
   content: string | ''
 
-  @Column()
+  @Column({
+    nullable: true
+  })
   media_url: string | ''
 
   @CreateDateColumn()

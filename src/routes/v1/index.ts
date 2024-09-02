@@ -2,6 +2,7 @@ import express from 'express';
 import authRoute from './auth.route';
 import userRoute from './user.route';
 import postRoute from './post.route';
+import tagRoute from './tag.route';
 
 const router = express.Router();
 
@@ -17,6 +18,10 @@ const defaultRoutes = [
   {
     path: '/posts',
     route: postRoute,
+  },
+  {
+    path: '/tags',
+    route: tagRoute,
   }
 ];
 
